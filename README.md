@@ -36,6 +36,7 @@ npx expo start --tunnel
 
 
 ## Architecture
+```text
                               MediWallet
                                   │
                          React Native + Expo
@@ -60,9 +61,10 @@ npx expo start --tunnel
           │                 │           │                  │
           ▼                 ▼           ▼                  ▼
    Production Website  Google Play   App Store       Microsoft Store                  
+```
 
 ## Release Workflow
-
+```text
                          GitHub
                            │
                   ┌────────┴────────┐
@@ -97,3 +99,4 @@ npx expo start --tunnel
                     │             │       │           │
                     ▼             ▼       ▼           ▼
                 Direct APK   Google Play TestFlight App Store
+```
