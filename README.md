@@ -1,56 +1,87 @@
-# Welcome to your Expo app 👋
+# MediBook
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Minimal Expo React Native app.
+Dev: Praketa S
 
-## Get started
+## Run
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Start Expo with tunnel:
 
-### Other setup steps
+```bash
+npx expo start --tunnel
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## Expo Go
 
-## Learn more
+### Android
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Install **Expo Go** from Google Play.
+2. Sign in to your Expo account.
+3. Scan the QR code shown in the terminal/browser.
+4. Open the project in Expo Go.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### iOS
 
-## Join the community
+1. Install **Expo Go** from the App Store.
+2. Sign in to your Expo account.
+3. Scan the QR code using the iPhone Camera app.
+4. Tap the Expo link to open the project in Expo Go.
 
-Join our community of developers creating universal apps.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Architecture
+            MediWallet
+                                  │
+                         React Native + Expo
+                                  │
+                Shared React / TypeScript Code
+                                  │
+          ┌───────────────────────┼────────────────────────┐
+          │                       │                        │
+          ▼                       ▼                        ▼
+      WEB CHANNEL            MOBILE CHANNEL          WINDOWS CHANNEL
+          │                       │                        │
+          ▼                 ┌─────┴─────┐                  ▼
+ React Native Web           │           │          React Native Windows
+          │                 ▼           ▼                  │
+          │              Android       iOS                 │
+          │                 │           │                  │
+          ▼                 ▼           ▼                  ▼
+    Expo Web Export      EAS Build   EAS Build       Visual Studio Build
+          │                 │           │                  │
+          ▼                 ▼           ▼                  ▼
+        Netlify            AAB         IPA             MSIX Package
+          │                 │           │                  │
+          ▼                 ▼           ▼                  ▼
+   Production Website  Google Play   App Store       Microsoft Store                  
+
+
+  Workflow               
+                       GitHub
+                         │
+                ┌────────┴────────┐
+                │                 │
+             mvp-v1         release/mvp-v1
+                │                 │
+                ▼                 ▼
+              DEV               PROD
+                │                 │
+      ┌─────────┼────────┐        ├── Netlify Web
+      │         │        │        ├── Google Play
+      ▼         ▼        ▼        ├── App Store
+ localhost   Android   Windows    └── Microsoft Store
+
+
+DELIVERABLES 
+| Artifact                                       | Recommended name                                |
+| ---------------------------------------------- | ----------------------------------------------- |
+| React Native → Web/Android/iOS/Windows diagram | **MediWallet High-Level Solution Architecture** |
+| DEV → release → tag → stores diagram           | **MediWallet Release & Deployment Workflow**    |
+| Folder/module structure                        | **MediWallet Low-Level Application Design**     |
+| 30-day Excel                                   | **MediWallet MVP Delivery Roadmap**             |
