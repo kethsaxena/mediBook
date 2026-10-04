@@ -36,7 +36,7 @@ npx expo start --tunnel
 
 
 ## Architecture
-            MediWallet
+                              MediWallet
                                   │
                          React Native + Expo
                                   │
@@ -61,27 +61,39 @@ npx expo start --tunnel
           ▼                 ▼           ▼                  ▼
    Production Website  Google Play   App Store       Microsoft Store                  
 
+## Release Workflow
 
-  Workflow               
-                       GitHub
-                         │
-                ┌────────┴────────┐
-                │                 │
-             mvp-v1         release/mvp-v1
-                │                 │
-                ▼                 ▼
-              DEV               PROD
-                │                 │
-      ┌─────────┼────────┐        ├── Netlify Web
-      │         │        │        ├── Google Play
-      ▼         ▼        ▼        ├── App Store
- localhost   Android   Windows    └── Microsoft Store
-
-
-DELIVERABLES 
-| Artifact                                       | Recommended name                                |
-| ---------------------------------------------- | ----------------------------------------------- |
-| React Native → Web/Android/iOS/Windows diagram | **MediWallet High-Level Solution Architecture** |
-| DEV → release → tag → stores diagram           | **MediWallet Release & Deployment Workflow**    |
-| Folder/module structure                        | **MediWallet Low-Level Application Design**     |
-| 30-day Excel                                   | **MediWallet MVP Delivery Roadmap**             |
+                         GitHub
+                           │
+                  ┌────────┴────────┐
+                  │                 │
+                main     release_YYYYMMDD_vX.Y.Z
+                  │                 │
+                  ▼                 ▼
+                 DEV          RELEASE CANDIDATE
+                  │                 │
+          ┌───────┴───────┐         ▼
+          │               │      Release Tag
+          ▼               ▼        vX.Y.Z
+       Android            iOS         │
+          │               │           │
+          ▼               ▼           │
+ Android Emulator     Expo Go         │
+ + Real Device        + iPhone        │
+          │               │           │
+          └───────┬───────┘           │
+                  │                   │
+                  ▼                   ▼
+               DEV QA             EAS Build
+                                      │
+                           ┌──────────┴──────────┐
+                           │                     │
+                           ▼                     ▼
+                        Android                 iOS
+                           │                     │
+                       APK / AAB                IPA
+                           │                     │
+                    ┌──────┴──────┐       ┌─────┴─────┐
+                    │             │       │           │
+                    ▼             ▼       ▼           ▼
+                Direct APK   Google Play TestFlight App Store
