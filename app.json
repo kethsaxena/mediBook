@@ -8,7 +8,7 @@
     "scheme": "mediwallet",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/expo.icon"
     },
     "android": {
       "adaptiveIcon": {
