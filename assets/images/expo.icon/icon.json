@@ -1,0 +1,40 @@
+{
+  "fill": {
+    "automatic-gradient": "extended-srgb:0.12941,0.27451,0.65098,1.00000"
+  },
+  "groups": [
+    {
+      "layers": [
+        {
+          "image-name": "mediwallet-background.png",
+          "name": "mediwallet-background"
+        },
+        {
+          "image-name": "mediwallet-symbol.svg",
+          "name": "mediwallet-symbol",
+          "position": {
+            "scale": 0.86,
+            "translation-in-points": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      }
+    }
+  ],
+  "supported-platforms": {
+    "circles": [
+      "watchOS"
+    ],
+    "squares": "shared"
+  }
+}
